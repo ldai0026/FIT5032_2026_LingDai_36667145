@@ -1,5 +1,5 @@
 <script setup>
-const studentName = 'Your Name'
+const studentName = 'Ling Dai'
 </script>
 
 <template>
