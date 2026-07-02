@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Readings Carlton",
+    "city": "Melbourne",
+    "open": true,
+    "stockedAuthors": ["Jane Austen", "George Orwell", "Virginia Woolf"]
+  },
+  {
+    "id": 2,
+    "name": "Dymocks Melbourne",
+    "city": "Melbourne",
+    "open": true,
+    "stockedAuthors": ["George Orwell", "Agatha Christie", "J. K. Rowling"]
+  },
+  {
+    "id": 3,
+    "name": "State Library Bookshop",
+    "city": "Melbourne",
+    "open": false,
+    "stockedAuthors": ["Mark Twain", "Jane Austen"]
+  }
+]

@@ -1,0 +1,202 @@
+@import './base.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  background: #f8fafc;
+  color: #172033;
+}
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+#app {
+  width: 100%;
+}
+
+.lab-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.hero {
+  margin-bottom: 24px;
+  padding: 28px;
+  border: 1px solid #d7dde8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.eyebrow,
+.activity-number {
+  color: #4761a8;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 8px 0;
+  font-size: 2.25rem;
+  line-height: 1.1;
+}
+
+.hero p {
+  max-width: 760px;
+  margin: 0;
+  color: #4b5563;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.activity-card {
+  min-height: 210px;
+  padding: 20px;
+  border: 1px solid #d7dde8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.activity-card.wide {
+  grid-column: 1 / -1;
+}
+
+.activity-card h2 {
+  margin: 8px 0 10px;
+  font-size: 1.25rem;
+}
+
+.activity-card h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.activity-card p {
+  margin: 0 0 12px;
+  color: #4b5563;
+}
+
+code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: #eef2ff;
+  color: #293f8f;
+}
+
+.metric-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.metric-row strong {
+  font-size: 1.8rem;
+  color: #047857;
+}
+
+.compact-list,
+.author-list,
+.work-list ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.author-list li,
+.compact-list li,
+.work-list li {
+  margin: 6px 0;
+}
+
+.control-label,
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+select {
+  padding: 7px 10px;
+  border: 1px solid #c8d1e0;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.result-text {
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.summary-pills,
+.highlight-list,
+.work-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.summary-pills span,
+.author-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #075985;
+  text-decoration: none;
+}
+
+.work-list section,
+.author-card {
+  flex: 1 1 260px;
+  padding: 14px;
+  border: 1px solid #d7dde8;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.store-line {
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #f3f4f6;
+}
+
+.author-link {
+  margin: 4px 8px 4px 0;
+}
+
+.highlight-demo {
+  border-color: #fbbf24;
+}
+
+.orwell-highlight h3 {
+  color: #b45309;
+}
+
+.highlight-note {
+  font-weight: 700;
+  color: #92400e !important;
+}
+
+@media (max-width: 760px) {
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+}

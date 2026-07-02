@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Jane Austen",
+    "birthYear": 1775,
+    "nationality": "British",
+    "genre": "Romance",
+    "alive": false,
+    "famousWorks": ["Pride and Prejudice", "Sense and Sensibility", "Emma"]
+  },
+  {
+    "id": 2,
+    "name": "George Orwell",
+    "birthYear": 1903,
+    "nationality": "British",
+    "genre": "Political fiction",
+    "alive": false,
+    "famousWorks": ["Nineteen Eighty-Four", "Animal Farm", "Homage to Catalonia"]
+  },
+  {
+    "id": 3,
+    "name": "Agatha Christie",
+    "birthYear": 1890,
+    "nationality": "British",
+    "genre": "Mystery",
+    "alive": false,
+    "famousWorks": ["Murder on the Orient Express", "And Then There Were None", "The Murder of Roger Ackroyd"]
+  },
+  {
+    "id": 4,
+    "name": "Mark Twain",
+    "birthYear": 1835,
+    "nationality": "American",
+    "genre": "Satire",
+    "alive": false,
+    "famousWorks": ["Adventures of Huckleberry Finn", "The Adventures of Tom Sawyer"]
+  },
+  {
+    "id": 5,
+    "name": "Virginia Woolf",
+    "birthYear": 1882,
+    "nationality": "British",
+    "genre": "Modernist",
+    "alive": false,
+    "famousWorks": ["Mrs Dalloway", "To the Lighthouse", "A Room of One's Own"]
+  },
+  {
+    "id": 6,
+    "name": "J. K. Rowling",
+    "birthYear": 1965,
+    "nationality": "British",
+    "genre": "Fantasy",
+    "alive": true,
+    "famousWorks": ["Harry Potter and the Philosopher's Stone", "Harry Potter and the Chamber of Secrets"]
+  }
+]
