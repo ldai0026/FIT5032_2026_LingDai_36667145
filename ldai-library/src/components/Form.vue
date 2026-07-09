@@ -1,132 +1,122 @@
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { ref } from 'vue'
 
-const formData = reactive({
+const formData = ref({
   username: '',
   password: '',
   isAustralian: false,
   reason: '',
-  gender: 'Female',
+  gender: '',
 })
 
-const submittedData = ref(null)
+const submittedCards = ref([])
 
-const passwordHelp = computed(() => {
-  if (!formData.password) return 'Use a private password for your library account.'
-  return formData.password.length >= 8
-    ? 'Password length looks good.'
-    : 'Password should be at least 8 characters.'
-})
-
-function submitForm() {
-  submittedData.value = {
-    username: formData.username,
-    password: formData.password,
-    isAustralian: formData.isAustralian,
-    reason: formData.reason,
-    gender: formData.gender,
-  }
+const submitForm = () => {
+  submittedCards.value.push({ ...formData.value })
 }
 
-function resetForm() {
-  formData.username = ''
-  formData.password = ''
-  formData.isAustralian = false
-  formData.reason = ''
-  formData.gender = 'Female'
-  submittedData.value = null
+const clearForm = () => {
+  formData.value = {
+    username: '',
+    password: '',
+    isAustralian: false,
+    reason: '',
+    gender: '',
+  }
 }
 </script>
 
 <template>
-  <main class="container py-4 py-md-5">
-    <section class="row justify-content-center">
-      <div class="col-12 col-md-10 col-lg-8 col-xl-7">
-        <h1>User Information Form / Credentials</h1>
-
-        <form class="library-form needs-validation" @submit.prevent="submitForm">
-          <div class="row g-3">
-            <div class="col-12 col-md-6">
-              <label for="username" class="form-label">Username:</label>
-              <input
-                id="username"
-                v-model.trim="formData.username"
-                class="form-control"
-                type="text"
-                placeholder="Enter username"
-                required
-              />
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12 col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+        <h1 class="text-center">User Information Form</h1>
+        <form @submit.prevent="submitForm">
+          <div class="row mb-3">
+            <div class="col-12 col-sm-6">
+              <label for="username" class="form-label">Username</label>
+              <input id="username" v-model="formData.username" type="text" class="form-control" />
             </div>
-
-            <div class="col-12 col-md-6">
-              <label for="password" class="form-label">Password:</label>
-              <input
-                id="password"
-                v-model="formData.password"
-                class="form-control"
-                type="password"
-                placeholder="Enter password"
-                minlength="8"
-                required
-              />
-              <div class="form-text">{{ passwordHelp }}</div>
+            <div class="col-12 col-sm-6">
+              <label for="password" class="form-label">Password</label>
+              <input id="password" v-model="formData.password" type="password" class="form-control" />
             </div>
+          </div>
 
-            <div class="col-12">
+          <div class="row mb-3">
+            <div class="col-12 col-sm-6">
               <div class="form-check">
                 <input
-                  id="resident"
+                  id="isAustralian"
                   v-model="formData.isAustralian"
-                  class="form-check-input"
                   type="checkbox"
+                  class="form-check-input"
                 />
-                <label for="resident" class="form-check-label">Australian Resident?</label>
+                <label class="form-check-label" for="isAustralian">Australian Resident?</label>
               </div>
             </div>
-
-            <div class="col-12">
-              <label for="reason" class="form-label">Reason For Joining:</label>
-              <textarea
-                id="reason"
-                v-model.trim="formData.reason"
-                class="form-control"
-                rows="4"
-                placeholder="Tell us why you are joining the library."
-              ></textarea>
-            </div>
-
-            <div class="col-12 col-sm-8 col-md-6">
+            <div class="col-12 col-sm-6">
               <label for="gender" class="form-label">Gender</label>
               <select id="gender" v-model="formData.gender" class="form-select">
-                <option>Female</option>
-                <option>Male</option>
-                <option>Non-binary</option>
-                <option>Prefer not to say</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
               </select>
             </div>
+          </div>
 
-            <div class="col-12 d-grid d-sm-flex gap-2 pt-2">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <button type="button" class="btn btn-outline-secondary" @click="resetForm">Reset</button>
-            </div>
+          <div class="mb-3">
+            <label for="reason" class="form-label">Reason for joining</label>
+            <textarea id="reason" v-model="formData.reason" class="form-control" rows="3"></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button type="button" class="btn btn-secondary" @click="clearForm">Clear</button>
           </div>
         </form>
 
-        <section v-if="submittedData" class="submitted-card mt-4">
-          <h2>Submitted User Information</h2>
-          <div class="row g-3">
-            <div class="col-12 col-md-6">
-              <p><strong>Username:</strong> {{ submittedData.username }}</p>
-              <p><strong>Password:</strong> {{ submittedData.password }}</p>
-              <p><strong>Australian Resident:</strong> {{ submittedData.isAustralian ? 'Yes' : 'No' }}</p>
-            </div>
-            <div class="col-12 col-md-6">
-              <p><strong>Gender:</strong> {{ submittedData.gender }}</p>
-              <p><strong>Reason For Joining:</strong> {{ submittedData.reason || 'No reason entered' }}</p>
+        <div class="row mt-5" v-if="submittedCards.length">
+          <div class="d-flex flex-wrap justify-content-start">
+            <div
+              v-for="(card, index) in submittedCards"
+              :key="index"
+              class="card m-2"
+              style="width: 18rem"
+            >
+              <div class="card-header">User Information</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Username: {{ card.username }}</li>
+                <li class="list-group-item">Password: {{ card.password }}</li>
+                <li class="list-group-item">
+                  Australian Resident: {{ card.isAustralian ? 'Yes' : 'No' }}
+                </li>
+                <li class="list-group-item">Gender: {{ card.gender }}</li>
+                <li class="list-group-item">Reason: {{ card.reason }}</li>
+              </ul>
             </div>
           </div>
-        </section>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #275FDA;
+  color: white;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+}
+
+.list-group-item {
+  padding: 10px;
+}
+</style>
