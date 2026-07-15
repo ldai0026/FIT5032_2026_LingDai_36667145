@@ -1,11 +1,27 @@
 <script setup>
-// import JSON from './components/JSON.vue'
-// import JSONSolution from './components/JSONSolution.vue'
-import Form from './components/Form.vue'
+import BHeader from './components/BHeader.vue'
 </script>
 
 <template>
-  <!-- <JSON /> -->
-  <!-- <JSONSolution /> -->
-  <Form />
+  <div class="main-container">
+    <header>
+      <BHeader />
+    </header>
+
+    <main class="main-box">
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
+
+<style scoped>
+.main-container {
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-box {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+</style>
