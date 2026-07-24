@@ -1,3 +1,17 @@
+<script setup>
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { currentUser, hasRole, isAuthenticated, logoutUser } from '../auth'
+
+const router = useRouter()
+const canSeeStaff = computed(() => hasRole('staff'))
+
+const handleLogout = () => {
+  logoutUser()
+  router.push('/login')
+}
+</script>
+
 <template>
   <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
     <div class="container py-2">
@@ -28,19 +42,29 @@
               Resources
             </router-link>
           </li>
-          <li class="nav-item">
+          <li v-if="isAuthenticated" class="nav-item">
             <router-link to="/dashboard" class="nav-link" active-class="active">
               Dashboard
             </router-link>
           </li>
-          <li class="nav-item">
+          <li v-if="canSeeStaff" class="nav-item">
             <router-link to="/staff" class="nav-link" active-class="active">Staff</router-link>
           </li>
-          <li class="nav-item">
+          <li v-if="isAuthenticated" class="nav-item">
+            <span class="nav-link disabled">
+              {{ currentUser.name }} · {{ currentUser.role }}
+            </span>
+          </li>
+          <li v-if="!isAuthenticated" class="nav-item">
             <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
           </li>
-          <li class="nav-item">
+          <li v-if="!isAuthenticated" class="nav-item">
             <router-link to="/register" class="btn btn-primary btn-sm ms-lg-2">Register</router-link>
+          </li>
+          <li v-else class="nav-item">
+            <button type="button" class="btn btn-outline-primary btn-sm ms-lg-2" @click="handleLogout">
+              Logout
+            </button>
           </li>
         </ul>
       </div>
