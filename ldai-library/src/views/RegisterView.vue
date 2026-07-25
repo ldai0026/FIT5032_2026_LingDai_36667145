@@ -25,7 +25,7 @@ const errors = ref({
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const validateName = () => {
-  const name = authHelpers.cleanText(formData.value.name)
+  const name = authHelpers.sanitizeText(formData.value.name)
 
   if (!name) {
     errors.value.name = 'Full name is required.'

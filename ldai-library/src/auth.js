@@ -21,6 +21,7 @@ const demoUsers = [
 ]
 
 const cleanText = (value) => String(value ?? '').trim()
+const sanitizeText = (value) => cleanText(value).replace(/[<>]/g, '')
 const normalizeEmail = (value) => cleanText(value).toLowerCase()
 
 const safeJsonParse = (value, fallback) => {
@@ -73,7 +74,7 @@ export const registerUser = ({ name, email, password, role }) => {
 
   const user = {
     id: `user-${Date.now()}`,
-    name: cleanText(name),
+    name: sanitizeText(name),
     email: normalizedEmail,
     password,
     role: selectedRole,
@@ -116,5 +117,6 @@ export const hasRole = (allowedRoles) => {
 
 export const authHelpers = {
   cleanText,
+  sanitizeText,
   normalizeEmail,
 }

@@ -17,13 +17,13 @@ import { currentUser } from '../auth'
         <div class="col-12 col-md-4">
           <article class="feature-card h-100">
             <h2>Saved resources</h2>
-            <p>Members can keep useful resources in a private list after authentication.</p>
+            <p>Members can browse dynamic resources and rate the content they find useful.</p>
           </article>
         </div>
         <div class="col-12 col-md-4">
           <article class="feature-card h-100">
-            <h2>Support plan</h2>
-            <p>A simple personal plan area will show next steps and preferred support channels.</p>
+            <h2>Aggregated feedback</h2>
+            <p>Ratings are persisted locally and update the average score across all users.</p>
           </article>
         </div>
         <div class="col-12 col-md-4">
