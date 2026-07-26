@@ -47,12 +47,22 @@ const handleLogout = () => {
               Dashboard
             </router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/firebase-signin" class="nav-link" active-class="active">
+              Firebase Sign In
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/firebase-register" class="nav-link" active-class="active">
+              FireRegister
+            </router-link>
+          </li>
           <li v-if="canSeeStaff" class="nav-item">
             <router-link to="/staff" class="nav-link" active-class="active">Staff</router-link>
           </li>
           <li v-if="isAuthenticated" class="nav-item">
             <span class="nav-link disabled">
-              {{ currentUser.name }} · {{ currentUser.role }}
+              {{ currentUser.name }} - {{ currentUser.role }}
             </span>
           </li>
           <li v-if="!isAuthenticated" class="nav-item">

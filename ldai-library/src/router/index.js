@@ -6,6 +6,8 @@ import RegisterView from '../views/RegisterView.vue'
 import DashboardView from '../views/DashboardView.vue'
 import StaffView from '../views/StaffView.vue'
 import AccessDeniedView from '../views/AccessDeniedView.vue'
+import FirebaseSigninView from '@/views/FirebaseSigninView.vue'
+import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
 import { hasRole, isAuthenticated } from '../auth'
 
 const routes = [
@@ -28,6 +30,16 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: RegisterView,
+  },
+  {
+    path: '/firebase-signin',
+    name: 'FirebaseSignin',
+    component: FirebaseSigninView,
+  },
+  {
+    path: '/firebase-register',
+    name: 'FireRegister',
+    component: FirebaseRegisterView,
   },
   {
     path: '/dashboard',
