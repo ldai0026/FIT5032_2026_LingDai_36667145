@@ -62,6 +62,16 @@ const handleLogout = () => {
               Get All Book API
             </router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/GetBookCount" class="nav-link" active-class="active">
+              Get Book Count
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/BookShowcase" class="nav-link" active-class="active">
+              Book Showcase
+            </router-link>
+          </li>
           <li v-if="isAuthenticated" class="nav-item">
             <router-link to="/dashboard" class="nav-link" active-class="active">
               Dashboard
