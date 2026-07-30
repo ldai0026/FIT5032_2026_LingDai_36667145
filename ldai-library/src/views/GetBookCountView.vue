@@ -30,7 +30,7 @@ const getBookCount = async () => {
   <section class="page-section">
     <div class="container">
       <div class="counter-panel">
-        <p class="section-eyebrow">Firebase Cloud Function</p>
+        <p class="section-eyebrow">Cloudflare Pages Function</p>
         <h1>Book Counter</h1>
         <p class="text-secondary">
           Count the records currently stored in the Cloud Firestore books collection.
