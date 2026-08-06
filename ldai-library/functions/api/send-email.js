@@ -9,14 +9,14 @@ const json = (body, status = 200) => Response.json(body, {
 
 const isAllowedStaff = (email, env) => {
   const allowList = String(env.STAFF_EMAILS ?? '').split(',').map((item) => item.trim().toLowerCase()).filter(Boolean)
-  return allowList.length === 0 || allowList.includes(String(email ?? '').trim().toLowerCase())
+  return allowList.length > 0 && allowList.includes(String(email ?? '').trim().toLowerCase())
 }
 
 export const onRequestOptions = async () => json({}, 204)
 
 export const onRequestPost = async ({ request, env }) => {
-  if (!env.SENDGRID_API_KEY || !env.SENDGRID_FROM_EMAIL) {
-    return json({ error: 'Email service is not configured. Add SENDGRID_API_KEY and SENDGRID_FROM_EMAIL to the deployment secrets.' }, 503)
+  if (!env.SENDGRID_API_KEY || !env.SENDGRID_FROM_EMAIL || !env.STAFF_EMAILS) {
+    return json({ error: 'Email service is not configured. Add SENDGRID_API_KEY, SENDGRID_FROM_EMAIL, and STAFF_EMAILS to the deployment secrets.' }, 503)
   }
   if (!isAllowedStaff(request.headers.get('X-Staff-Email'), env)) {
     return json({ error: 'Staff authorisation is required to send outreach email.' }, 403)
