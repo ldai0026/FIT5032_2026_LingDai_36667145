@@ -14,6 +14,7 @@ import CountBookAPI from '@/views/CountBookAPI.vue'
 import GetAllBookAPI from '@/views/GetAllBookAPI.vue'
 import GetBookCountView from '@/views/GetBookCountView.vue'
 import BookShowcaseView from '@/views/BookShowcaseView.vue'
+import FindServicesView from '@/views/FindServicesView.vue'
 import { hasRole, isAuthenticated } from '../auth'
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
     path: '/resources',
     name: 'Resources',
     component: ResourcesView,
+  },
+  {
+    path: '/find-services',
+    name: 'FindServices',
+    component: FindServicesView,
   },
   {
     path: '/login',

@@ -2,6 +2,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { firebaseApp, getFirebaseRole, isFirebaseConfigured } from '@/firebase'
+import { setExternalSession } from '@/auth'
 
 const formData = ref({
   email: '',
@@ -64,6 +65,12 @@ const signInFirebaseUser = async () => {
       formData.value.password,
     )
     currentFirebaseUser.value = credential.user
+    setExternalSession({
+      uid: credential.user.uid,
+      email: credential.user.email,
+      role: getFirebaseRole(credential.user.email),
+      name: credential.user.displayName,
+    })
     statusMessage.value = `Signed in as ${credential.user.email}.`
     console.log(`Current Firebase user: ${credential.user.email} (${credential.user.uid})`)
   } catch (error) {
@@ -77,6 +84,8 @@ const logoutFirebaseUser = async () => {
 
   await signOut(auth)
   currentFirebaseUser.value = null
+  // Clear the application session after the Firebase provider signs out.
+  localStorage.removeItem('mindbridge_session')
   statusMessage.value = 'Signed out. Current Firebase user is null.'
   console.log('Current Firebase user after logout: null')
 }
@@ -87,6 +96,9 @@ onMounted(() => {
 
   unsubscribeAuth = onAuthStateChanged(auth, (user) => {
     currentFirebaseUser.value = user
+    if (user) {
+      setExternalSession({ uid: user.uid, email: user.email, role: getFirebaseRole(user.email), name: user.displayName })
+    }
     console.log(user ? `Current Firebase user: ${user.email} (${user.uid})` : 'Current Firebase user: null')
   })
 })

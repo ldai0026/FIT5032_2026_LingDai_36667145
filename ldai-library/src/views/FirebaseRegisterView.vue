@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { firebaseApp, isFirebaseConfigured, saveFirebaseRole } from '@/firebase'
+import { setExternalSession } from '@/auth'
 
 const formData = ref({
   email: '',
@@ -69,6 +70,7 @@ const registerFirebaseUser = async () => {
     )
 
     saveFirebaseRole(credential.user.email, formData.value.role)
+    setExternalSession({ uid: credential.user.uid, email: credential.user.email, role: formData.value.role })
     createdUser.value = credential.user
     successMessage.value = `Registered ${credential.user.email} as ${formData.value.role}.`
     console.log(

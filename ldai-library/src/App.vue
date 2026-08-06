@@ -4,9 +4,10 @@ import BHeader from './components/BHeader.vue'
 
 <template>
   <div class="app-shell">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <BHeader />
 
-    <main>
+    <main id="main-content" tabindex="-1">
       <router-view />
     </main>
   </div>

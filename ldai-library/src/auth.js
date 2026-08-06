@@ -110,6 +110,20 @@ export const logoutUser = () => {
   localStorage.removeItem(SESSION_KEY)
 }
 
+// Firebase Authentication is the external identity provider used by the A3 flow.
+// The session object intentionally contains only display data; passwords stay in Firebase.
+export const setExternalSession = ({ uid, email, role = 'member', name }) => {
+  currentUser.value = {
+    id: uid,
+    name: sanitizeText(name || email?.split('@')[0] || 'MindBridge member'),
+    email: normalizeEmail(email),
+    role: role === 'staff' ? 'staff' : 'member',
+    provider: 'firebase',
+  }
+  localStorage.setItem(SESSION_KEY, JSON.stringify(currentUser.value))
+  return currentUser.value
+}
+
 export const hasRole = (allowedRoles) => {
   const roles = Array.isArray(allowedRoles) ? allowedRoles : [allowedRoles]
   return roles.includes(currentUser.value?.role)

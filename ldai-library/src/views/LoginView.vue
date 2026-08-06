@@ -110,6 +110,7 @@ const submitLogin = () => {
               </div>
 
               <button type="submit" class="btn btn-primary w-100">Login</button>
+              <router-link to="/firebase-signin" class="btn btn-outline-primary w-100 mt-2">Use external Firebase authentication</router-link>
             </form>
           </div>
         </div>
