@@ -36,6 +36,7 @@ jobs:
         env:
           GITHUB_PAGES: 'true'
           VITE_OPENWEATHER_API_KEY: ${{ secrets.VITE_OPENWEATHER_API_KEY }}
+          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
