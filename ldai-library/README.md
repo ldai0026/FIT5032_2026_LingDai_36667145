@@ -1,38 +1,44 @@
-# week2-vue
+# MindBridge
 
-This template should help get you started developing with Vue 3 in Vite.
+MindBridge is a responsive Vue 3 web application developed progressively for FIT5032 assessed labs and assessments. It supports mental health resource discovery, member and staff access, ratings, Firebase data, external services, and later assessment extensions.
 
-## Recommended IDE Setup
+## Student
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Name: Ling Dai
+- Student ID: 36667145
+- GitHub: [ldai0026](https://github.com/ldai0026)
 
-## Recommended Browser Setup
+## Technology
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Vue 3 and Vite
+- Vue Router
+- Bootstrap
+- Firebase Authentication, Firestore, and Cloud Functions
+- GitHub Pages deployment
 
-## Customize configuration
+## Main features
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Responsive public pages and mental health resource browsing
+- Registration, login, logout, and protected routes
+- Member and staff role-based access
+- Dynamic resource filtering and persistent ratings
+- Firebase-backed book management activities
+- Weather, book, service-location, and outreach integrations
+- Accessible layouts and data export features
 
-## Project Setup
+## Local development
 
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+Open the local URL printed by Vite in a browser.
+
+## Production build
 
 ```sh
 npm run build
 ```
+
+Environment variables required by optional integrations are documented in `.env.example`. Secrets are not committed to this repository.
