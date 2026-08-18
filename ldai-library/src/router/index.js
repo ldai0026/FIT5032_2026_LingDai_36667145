@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ResourcesView from '../views/ResourcesView.vue'
 import LoginView from '../views/LoginView.vue'
@@ -102,8 +102,15 @@ const routes = [
   },
 ]
 
+// GitHub Pages cannot rewrite deep links to index.html. Its production build
+// uses a repository subpath, so hash history keeps bookmarks and page refreshes
+// working without changing the clean history URLs used locally and on Cloudflare.
+const isGitHubPagesBuild = import.meta.env.BASE_URL !== '/'
+
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: isGitHubPagesBuild
+    ? createWebHashHistory(import.meta.env.BASE_URL)
+    : createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
 
