@@ -1,21 +1,25 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ResourcesView from '../views/ResourcesView.vue'
-import LoginView from '../views/LoginView.vue'
-import RegisterView from '../views/RegisterView.vue'
-import DashboardView from '../views/DashboardView.vue'
-import StaffView from '../views/StaffView.vue'
-import AccessDeniedView from '../views/AccessDeniedView.vue'
-import FirebaseSigninView from '@/views/FirebaseSigninView.vue'
-import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
-import AddBookView from '@/views/AddBookView.vue'
-import WeatherView from '@/views/WeatherView.vue'
-import CountBookAPI from '@/views/CountBookAPI.vue'
-import GetAllBookAPI from '@/views/GetAllBookAPI.vue'
-import GetBookCountView from '@/views/GetBookCountView.vue'
-import BookShowcaseView from '@/views/BookShowcaseView.vue'
-import FindServicesView from '@/views/FindServicesView.vue'
 import { hasRole, isAuthenticated } from '../auth'
+
+// Keep the landing page in the initial bundle and load feature pages only when
+// a visitor opens them. This reduces the JavaScript needed for the first view,
+// especially the Firebase, PrimeVue table, Mapbox, and staff dashboard code.
+const ResourcesView = () => import('../views/ResourcesView.vue')
+const LoginView = () => import('../views/LoginView.vue')
+const RegisterView = () => import('../views/RegisterView.vue')
+const DashboardView = () => import('../views/DashboardView.vue')
+const StaffView = () => import('../views/StaffView.vue')
+const AccessDeniedView = () => import('../views/AccessDeniedView.vue')
+const FirebaseSigninView = () => import('@/views/FirebaseSigninView.vue')
+const FirebaseRegisterView = () => import('@/views/FirebaseRegisterView.vue')
+const AddBookView = () => import('@/views/AddBookView.vue')
+const WeatherView = () => import('@/views/WeatherView.vue')
+const CountBookAPI = () => import('@/views/CountBookAPI.vue')
+const GetAllBookAPI = () => import('@/views/GetAllBookAPI.vue')
+const GetBookCountView = () => import('@/views/GetBookCountView.vue')
+const BookShowcaseView = () => import('@/views/BookShowcaseView.vue')
+const FindServicesView = () => import('@/views/FindServicesView.vue')
 
 const routes = [
   {
