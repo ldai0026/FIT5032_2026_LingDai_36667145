@@ -31,6 +31,15 @@ cd ldai-library
 npm run build
 ```
 
+### A3 deployment configuration
+
+The A3 service-map page uses the public `VITE_MAPBOX_TOKEN` value at build time.
+The bulk-email function keeps `SENDGRID_API_KEY`, `SENDGRID_FROM_EMAIL`, and
+`STAFF_EMAILS` in the Cloudflare Pages secret store. These values are intentionally
+not committed to this repository. Without them the application presents an
+explicit demo/configuration message rather than exposing a secret or silently
+claiming that a live integration is available.
+
 ## Supporting configuration
 
 - `.github/workflows/deploy.yml` builds `ldai-library/` and deploys it to GitHub Pages.

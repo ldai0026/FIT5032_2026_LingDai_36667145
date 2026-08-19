@@ -144,6 +144,7 @@ const sendBulkEmail = async () => {
             <button type="button" class="btn btn-outline-primary" @click="exportPdf('MindBridge resources')">Export PDF</button>
           </div>
         </div>
+        <p class="small text-secondary mb-2" role="status">{{ filteredResources.length }} resources shown; the table displays 10 rows per page.</p>
         <div role="region" aria-labelledby="resource-table-title">
           <h2 id="resource-table-title" class="visually-hidden">Resource management table</h2>
           <DataTable :value="filteredResources" paginator :rows="10" sortMode="multiple" responsiveLayout="scroll" class="mb-5">
@@ -165,6 +166,7 @@ const sendBulkEmail = async () => {
             <button type="button" class="btn btn-outline-primary" @click="exportPdf('MindBridge outreach contacts')">Export PDF</button>
           </div>
         </div>
+        <p class="small text-secondary mb-2" role="status">{{ filteredContacts.length }} outreach contacts shown; the table displays 10 rows per page.</p>
         <div role="region" aria-labelledby="contact-table-title">
           <h2 id="contact-table-title" class="visually-hidden">Outreach contact table</h2>
           <DataTable v-model:selection="selectedRecipients" :value="filteredContacts" dataKey="id" paginator :rows="10" sortMode="multiple" responsiveLayout="scroll" class="mb-5">
