@@ -42,3 +42,5 @@ npm run build
 ```
 
 Environment variables required by optional integrations are documented in `.env.example`. Secrets are not committed to this repository.
+
+For the A3 recording, configure the Cloudflare Pages Production `STAFF_EMAILS` variable with the dedicated Firebase staff demo address `ling.dai.a3.staff@example.org`.
