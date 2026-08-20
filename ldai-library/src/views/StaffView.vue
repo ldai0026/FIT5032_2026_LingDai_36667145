@@ -10,7 +10,6 @@ const contactSearch = ref('')
 const selectedRecipients = ref([])
 const subject = ref('MindBridge follow-up and support resources')
 const message = ref('Hello,\n\nHere is a helpful MindBridge update for your support journey.\n\nKind regards,\nThe MindBridge team')
-const attachment = ref(null)
 const emailStatus = ref('')
 const emailError = ref('')
 const sending = ref(false)
@@ -52,29 +51,6 @@ const exportPdf = (title) => {
   window.print()
 }
 
-const onAttachmentChange = (event) => {
-  const file = event.target.files?.[0]
-  if (!file) {
-    attachment.value = null
-    return
-  }
-  if (file.size > 2 * 1024 * 1024) {
-    emailError.value = 'Attachments must be 2 MB or smaller.'
-    event.target.value = ''
-    attachment.value = null
-    return
-  }
-  attachment.value = file
-  emailError.value = ''
-}
-
-const fileToBase64 = (file) => new Promise((resolve, reject) => {
-  const reader = new FileReader()
-  reader.onload = () => resolve(String(reader.result).split(',')[1] ?? '')
-  reader.onerror = reject
-  reader.readAsDataURL(file)
-})
-
 const sendBulkEmail = async () => {
   emailStatus.value = ''
   emailError.value = ''
@@ -93,9 +69,6 @@ const sendBulkEmail = async () => {
       recipients: selectedRecipients.value.map((row) => row.email),
       subject: subject.value.trim(),
       text: message.value.trim(),
-      attachment: attachment.value
-        ? { filename: attachment.value.name, type: attachment.value.type || 'application/octet-stream', content: await fileToBase64(attachment.value) }
-        : undefined,
     }
     const response = await fetch('/api/send-email', {
       method: 'POST',
@@ -182,10 +155,9 @@ const sendBulkEmail = async () => {
         <div class="bulk-email-panel" role="region" aria-labelledby="bulk-email-title">
           <p class="section-eyebrow mb-1">F.1 bulk email</p>
           <h2 id="bulk-email-title">Send selected contacts an update</h2>
-          <p class="text-secondary">The browser sends a validated request to the serverless SendGrid function. The API key remains in the deployment secret store.</p>
+          <p class="text-secondary">The browser sends a validated request to a protected EmailJS serverless function. The provider credentials remain in the deployment secret store.</p>
           <form class="row g-3" @submit.prevent="sendBulkEmail">
-            <div class="col-12 col-lg-6"><label for="bulk-subject" class="form-label">Subject</label><input id="bulk-subject" v-model="subject" class="form-control" required maxlength="160" /></div>
-            <div class="col-12 col-lg-6"><label for="bulk-attachment" class="form-label">Attachment (optional, max 2 MB)</label><input id="bulk-attachment" type="file" class="form-control" @change="onAttachmentChange" /></div>
+            <div class="col-12"><label for="bulk-subject" class="form-label">Subject</label><input id="bulk-subject" v-model="subject" class="form-control" required maxlength="160" /></div>
             <div class="col-12"><label for="bulk-message" class="form-label">Message</label><textarea id="bulk-message" v-model="message" class="form-control" rows="5" required maxlength="5000" /></div>
             <div v-if="emailError" class="col-12"><div class="alert alert-danger" role="alert">{{ emailError }}</div></div>
             <div v-if="emailStatus" class="col-12"><div class="alert alert-success" role="status">{{ emailStatus }}</div></div>

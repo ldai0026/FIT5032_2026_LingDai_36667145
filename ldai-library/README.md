@@ -14,7 +14,7 @@ MindBridge is a responsive Vue 3 web application developed progressively for FIT
 - Vue Router
 - Bootstrap
 - Firebase Authentication, Firestore, and Cloud Functions
-- GitHub Pages deployment
+- Cloudflare Pages deployment with Pages Functions
 
 ## Main features
 
@@ -23,7 +23,7 @@ MindBridge is a responsive Vue 3 web application developed progressively for FIT
 - Member and staff role-based access
 - Dynamic resource filtering and persistent ratings
 - Firebase-backed book management activities
-- Weather, book, service-location, and outreach integrations
+- Weather, book, service-location, and EmailJS outreach integrations
 - Accessible layouts and data export features
 
 ## Local development
